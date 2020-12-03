@@ -20,11 +20,13 @@ namespace SnakeAndLadder
         {
             Console.WriteLine("***Welcome To Snake and Ladder***");
             int playerPosition = 0;
+            int winPosition = 100;
+            int countRound = 0;
             while (playerPosition != 100)
             {
                 int playerDice = rollDice();
                 int option = checkOption();
-                int winPosition = 100;
+                countRound++;              
                 switch (option)
                 {
                     case 1:
@@ -37,11 +39,25 @@ namespace SnakeAndLadder
                         break;
                     case 2:
                         Console.WriteLine("Player got Snake.");
-                        playerPosition -= playerDice;
+                        if ((playerPosition - playerDice) < 0)
+                        {
+                            playerPosition = 0;
+                        }
+                        else
+                        {
+                            playerPosition -= playerDice;
+                        }
                         break;
                     default:
                         Console.WriteLine("Player not playing.");
                         break;
+                }
+                Console.WriteLine($"Roll_Dice_Count:{ countRound } :Player_Position: {playerPosition}");
+                if (playerPosition == winPosition)
+                {
+                    Console.WriteLine("Player Won The SnkeNLadder***");
+                    Console.WriteLine("Roll_Dice_Count: " + countRound);
+                    break;
                 }
             }
         }
