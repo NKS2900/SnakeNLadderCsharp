@@ -24,11 +24,16 @@ namespace SnakeAndLadder
             {
                 int playerDice = rollDice();
                 int option = checkOption();
+                int winPosition = 100;
                 switch (option)
                 {
                     case 1:
                         Console.WriteLine("Player Got Ladder.");
                         playerPosition += playerDice;
+                        if (playerPosition > winPosition)
+                        {
+                            playerPosition -= playerDice;
+                        }
                         break;
                     case 2:
                         Console.WriteLine("Player got Snake.");
