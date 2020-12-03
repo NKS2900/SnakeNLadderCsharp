@@ -37,7 +37,14 @@ namespace SnakeAndLadder
                         break;
                     case 2:
                         Console.WriteLine("Player got Snake.");
-                        playerPosition -= playerDice;
+                        if ((playerPosition - playerDice) < 0)
+                        {
+                            playerPosition = 0;
+                        }
+                        else
+                        {
+                            playerPosition -= playerDice;
+                        }
                         break;
                     default:
                         Console.WriteLine("Player not playing.");
